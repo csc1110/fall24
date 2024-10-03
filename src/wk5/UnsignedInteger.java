@@ -1,7 +1,20 @@
 package wk5;
 
 public class UnsignedInteger {
-    int value;
+    private int value;
+
+    // Constructor
+    public UnsignedInteger() {
+        value = (int)(Math.random() * 10);
+    }
+
+    /**
+     * Constructor
+     * @param val value to be used. If negative, sets object value to 0
+     */
+    public UnsignedInteger(int val) {
+        value = Math.max(0, val);
+    }
 
     public boolean changeValue(int val) {
         boolean changed = false;
