@@ -1,5 +1,7 @@
 package wk3;
 
+import wk5.UnsignedInteger;
+
 import java.util.Scanner;
 
 public class Lec1 {
@@ -35,5 +37,7 @@ public class Lec1 {
         } else {
             System.out.println("You are not a teenager");
         }
+        UnsignedInteger num = new UnsignedInteger();
+        num.changeValue(3);
     }
 }
