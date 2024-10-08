@@ -25,6 +25,10 @@ public class UnsignedInteger {
         return changed;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     public String toString() {
         return "" + value;
     }
