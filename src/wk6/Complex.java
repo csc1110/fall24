@@ -135,6 +135,7 @@ public class Complex {
      */
     public Complex plus(double addend) {
         return new Complex(this.real + addend, this.imag);
+        //return plus(new Complex(addend));
     }
 
     /**
@@ -153,7 +154,7 @@ public class Complex {
      * @return the result of taking away the specified value from the object
      */
     public Complex minus(Complex subtrahend) {
-        return new Complex(real - subtrahend.real, imag - subtrahend.imag);
+        return new Complex(this.real - subtrahend.real, this.imag - subtrahend.imag);
     }
 
 
@@ -163,7 +164,8 @@ public class Complex {
      * @return true if the objects share the same value, otherwise false
      */
     public boolean equals(Complex that) {
-        return this.real == that.real && this.imag == that.imag;
+        final double closenessThreshold = 0.0001;
+        return Math.abs(this.real - that.real) < closenessThreshold && Math.abs(this.imag - that.imag) < closenessThreshold;
     }
 
 
