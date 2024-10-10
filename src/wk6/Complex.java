@@ -19,6 +19,12 @@ import java.util.Scanner;
 public class Complex {
 
     /**
+     * Determines whether the string representation of the complex number
+     * will be in cartesian or polar coordinates
+     */
+    private static boolean isPolar = false;
+
+    /**
      * Real component of the complex number
      */
     private final double real;
@@ -29,20 +35,13 @@ public class Complex {
     private final double imag;
 
     /**
-     * Determines whether the string representation of the complex number
-     * will be in cartesian or polar coordinates
-     */
-    private static boolean isPolar = false;
-
-
-    /**
      * Default constructor of a complex number with real and
      * imaginary components of zero
      */
     public Complex() {
         this(0.0);
+        System.out.println("Complex()");
     }
-
 
     /**
      * Constructor of a complex number with an imaginary component of zero
@@ -50,8 +49,8 @@ public class Complex {
      */
     public Complex(double real) {
         this(real, 0.0);
+        System.out.println("Complex(double real)");
     }
-
 
     /**
      * Constructor for a fully specified complex number
@@ -61,8 +60,8 @@ public class Complex {
     public Complex(double real, double imag) {
         this.real = real;
         this.imag = imag;
+        System.out.println("Complex(double real, double imag)");
     }
-
 
     /**
      * Constructor that accepts a string representation of a
@@ -103,13 +102,12 @@ public class Complex {
         this.imag = imag;
     }
 
-
     /**
      * The String representation of the complex number
      * This may be in cartesian or polar form depending on
      * the value of the class variable isPolar.
-     * @see Object#toString()
      * @return String representation of the object
+     * @see Object#toString()
      */
     public String toString(){
         String answer;
@@ -129,7 +127,6 @@ public class Complex {
         return answer;
     }
 
-
     /**
      * Calculates the sum of the object and a real value
      * @param addend The value to be added to the real component of the complex number
@@ -139,7 +136,6 @@ public class Complex {
     public Complex plus(double addend) {
         return new Complex(this.real + addend, this.imag);
     }
-
 
     /**
      * Calculates the sum of two complex numbers

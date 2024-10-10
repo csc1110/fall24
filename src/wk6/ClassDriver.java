@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class ClassDriver {
     public static void main(String[] args) {
+        new Complex(3.13);
+    }
+
+    public static void main2(String[] args) {
         Scanner in = new Scanner(System.in);
 
         // Get first number
