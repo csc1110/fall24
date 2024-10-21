@@ -51,20 +51,28 @@ public class Bank {
 
     }
 
+    private static BankAccount getCustomer(String name) {
+        BankAccount customer = null;
+        if (customer1.getName().equals(name)) {
+            customer = customer1;
+        } else if (customer2.getName().equals(name)) {
+            customer = customer2;
+        } else if (customer3.getName().equals(name)) {
+            customer = customer3;
+        }
+        return customer;
+    }
     /**
      * Displays the balance to the user
      */
     private static void checkBalance() {
         System.out.println("What is your name?");
         String name = in.nextLine();
-        displayBalance(customer1, "First", name);
-        displayBalance(customer2, "Second", name);
-        displayBalance(customer3, "Third", name);
-    }
-
-    private static void displayBalance(BankAccount customer, String order, String name) {
-        if (customer.getName().equals(name)) {
-            System.out.println(order + " customer, your balance is: " + customer.getBalance());
+        BankAccount customer = getCustomer(name);
+        if (customer != null) {
+            System.out.println("Hi " + name + ", your balance is: " + customer.getBalance());
+        } else {
+            System.out.println(name + " is not a customer here.");
         }
     }
 
