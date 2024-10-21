@@ -41,17 +41,65 @@ public class Bank {
             String userChoice = in.nextLine();
             switch (userChoice) {
                 case "1" -> checkBalance();
-                case "2" -> System.out.println("Broken");//deposit();
-                case "3" -> System.out.println("Broken");//withdraw();
-                case "4" -> System.out.println("Broken");//closeAccount();
+                case "2" -> deposit();
+                case "3" -> withdraw();
+                case "4" -> closeAccount();
                 case "5" -> quit = true;
             }
         } while (!quit);
-        
+    }
+
+    private static void closeAccount() {
+        System.out.println("What is your name?");
+        String name = in.nextLine();
+        if (customer1.getName().equals(name)) {
+            System.out.println("You have been removed, ready for a new customer");
+            customer1 = getBankAccount("new");
+        } else if (customer2.getName().equals(name)) {
+            System.out.println("You have been removed, ready for a new customer");
+            customer2 = getBankAccount("new");
+        } else if (customer3.getName().equals(name)) {
+            System.out.println("You have been removed, ready for a new customer");
+            customer3 = getBankAccount("new");
+        } else {
+            System.out.println("It does not appear that you bank with us.");
+        }
 
     }
 
-    private static BankAccount getCustomer(String name) {
+    private static void withdraw() {
+        BankAccount customer = getCustomer();
+        if (customer != null) {
+            System.out.println("How much would you like to withdraw?");
+            double amount = Double.parseDouble(in.nextLine());
+            System.out.println("Please enter your pin");
+            String pin = in.nextLine();
+            int status = customer.withdraw(pin, amount);
+            if (status == 1) {
+                System.out.println("Successfully withdrew $" + amount);
+            } else {
+                System.out.println("Unable to withdraw $" + amount);
+            }
+        }
+    }
+
+    private static void deposit() {
+        BankAccount customer = getCustomer();
+        if (customer != null) {
+            System.out.println("How much would you like to deposit?");
+            double amount = Double.parseDouble(in.nextLine());
+            int status = customer.deposit(amount);
+            if (status == 1) {
+                System.out.println("Successful deposit");
+            } else {
+                System.out.println("Unable to deposit $" + amount);
+            }
+        }
+    }
+
+    private static BankAccount getCustomer() {
+        System.out.println("What is your name?");
+        String name = in.nextLine();
         BankAccount customer = null;
         if (customer1.getName().equals(name)) {
             customer = customer1;
@@ -66,13 +114,12 @@ public class Bank {
      * Displays the balance to the user
      */
     private static void checkBalance() {
-        System.out.println("What is your name?");
-        String name = in.nextLine();
-        BankAccount customer = getCustomer(name);
+        BankAccount customer = getCustomer();
         if (customer != null) {
-            System.out.println("Hi " + name + ", your balance is: " + customer.getBalance());
+            System.out.println("Hi " + customer.getName() + ", your balance is: "
+                    + customer.getBalance());
         } else {
-            System.out.println(name + " is not a customer here.");
+            System.out.println("You are not a customer here.");
         }
     }
 
