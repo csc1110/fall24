@@ -18,6 +18,17 @@ public class Bank {
     private static BankAccount customer1;
     private static BankAccount customer2;
     private static BankAccount customer3;
+    /* Input
+    Chris Taylor
+    54
+    88wsjs
+    J J
+    23
+    9876
+    Ed
+    3
+    kakkssi
+     */
 
     public static void main(String[] args) {
         in = new Scanner(System.in);
@@ -27,23 +38,13 @@ public class Bank {
         boolean quit = false;
         do {
             displayMenu();
-            String userChoice = in.next();
+            String userChoice = in.nextLine();
             switch (userChoice) {
-                case "1":
-                    checkBalance();
-                    break;
-                case "2":
-                    deposit();
-                    break;
-                case "3":
-                    withdraw();
-                    break;
-                case "4":
-                    closeAccount();
-                    break;
-                case "5":
-                    quit = true;
-                    break;
+                case "1" -> checkBalance();
+                case "2" -> System.out.println("Broken");//deposit();
+                case "3" -> System.out.println("Broken");//withdraw();
+                case "4" -> System.out.println("Broken");//closeAccount();
+                case "5" -> quit = true;
             }
         } while (!quit);
         
@@ -55,15 +56,29 @@ public class Bank {
      */
     private static void checkBalance() {
         System.out.println("What is your name?");
-        String name = in.next();
+        String name = in.nextLine();
+        displayBalance(customer1, "First", name);
+        displayBalance(customer2, "Second", name);
+        displayBalance(customer3, "Third", name);
+    }
 
+    private static void displayBalance(BankAccount customer, String order, String name) {
+        if (customer.getName().equals(name)) {
+            System.out.println(order + " customer, your balance is: " + customer.getBalance());
+        }
     }
 
     /**
      * Displays the menu options for the user.
      */
     private static void displayMenu() {
-        // left as exercise for the student
+        System.out.println("""
+                Please select one of the following options by typing the corresponding number
+                 1. Check balance
+                 2. Deposit
+                 3. Withdraw
+                 4. Close bank account, get new customer set up
+                 5. Quit""");
     }
 
     /**
@@ -77,6 +92,9 @@ public class Bank {
     private static BankAccount getBankAccount(String customerOrder) {
         System.out.println("Hi " + customerOrder
                 + " customer, please enter your name, age, and pin on separate lines");
-        return new BankAccount(in.nextLine(), in.nextInt(), in.next());
+        String name = in.nextLine();
+        int age = Integer.parseInt(in.nextLine());
+        String pin = in.nextLine();
+        return new BankAccount(name, age, pin);
     }
 }
