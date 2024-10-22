@@ -50,15 +50,14 @@ public class Bank {
     }
 
     private static void closeAccount() {
-        System.out.println("What is your name?");
-        String name = in.nextLine();
-        if (customer1.getName().equals(name)) {
+        BankAccount customer = getCustomer();
+        if (customer == customer1) {
             System.out.println("You have been removed, ready for a new customer");
             customer1 = getBankAccount("new");
-        } else if (customer2.getName().equals(name)) {
+        } else if (customer2 == customer) {
             System.out.println("You have been removed, ready for a new customer");
             customer2 = getBankAccount("new");
-        } else if (customer3.getName().equals(name)) {
+        } else if (customer3 == customer) {
             System.out.println("You have been removed, ready for a new customer");
             customer3 = getBankAccount("new");
         } else {
