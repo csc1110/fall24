@@ -15,9 +15,7 @@ import java.util.Scanner;
  */
 public class Bank {
     private static Scanner in;
-    private static BankAccount customer1;
-    private static BankAccount customer2;
-    private static BankAccount customer3;
+    private BankAccount[] customers;
     /* Input
     Chris Taylor
     54
@@ -30,43 +28,49 @@ public class Bank {
     kakkssi
      */
 
+    public Bank() {
+        customers = new BankAccount[3];
+        for (int i = 0; i < customers.length; i++) {
+            customers[i] = getBankAccount("first");
+        }
+    }
+
     public static void main(String[] args) {
         in = new Scanner(System.in);
-        customer1 = getBankAccount("first");
-        customer2 = getBankAccount("second");
-        customer3 = getBankAccount("third");
+        Bank aBank = new Bank();
+        Bank zBank = new Bank();
         boolean quit = false;
         do {
             displayMenu();
             String userChoice = in.nextLine();
             switch (userChoice) {
-                case "1" -> checkBalance();
-                case "2" -> deposit();
-                case "3" -> withdraw();
-                case "4" -> closeAccount();
+                case "1" -> aBank.checkBalance();
+                case "2" -> aBank.deposit();
+                case "3" -> aBank.withdraw();
+                case "4" -> aBank.closeAccount();
                 case "5" -> quit = true;
             }
         } while (!quit);
     }
 
-    private static void closeAccount() {
+    private void closeAccount() {
         BankAccount customer = getCustomer();
-        if (customer == customer1) {
+        if (customer == customers[0]) {
             System.out.println("You have been removed, ready for a new customer");
-            customer1 = getBankAccount("new");
-        } else if (customer2 == customer) {
+            customers[0] = getBankAccount("new");
+        } else if (customers[1] == customer) {
             System.out.println("You have been removed, ready for a new customer");
-            customer2 = getBankAccount("new");
-        } else if (customer3 == customer) {
+            customers[1] = getBankAccount("new");
+        } else if (customers[2] == customer) {
             System.out.println("You have been removed, ready for a new customer");
-            customer3 = getBankAccount("new");
+            customers[2] = getBankAccount("new");
         } else {
             System.out.println("It does not appear that you bank with us.");
         }
 
     }
 
-    private static void withdraw() {
+    private void withdraw() {
         BankAccount customer = getCustomer();
         if (customer != null) {
             System.out.println("How much would you like to withdraw?");
@@ -82,7 +86,7 @@ public class Bank {
         }
     }
 
-    private static void deposit() {
+    private void deposit() {
         BankAccount customer = getCustomer();
         if (customer != null) {
             System.out.println("How much would you like to deposit?");
@@ -96,23 +100,23 @@ public class Bank {
         }
     }
 
-    private static BankAccount getCustomer() {
+    private BankAccount getCustomer() {
         System.out.println("What is your name?");
         String name = in.nextLine();
         BankAccount customer = null;
-        if (customer1.getName().equals(name)) {
-            customer = customer1;
-        } else if (customer2.getName().equals(name)) {
-            customer = customer2;
-        } else if (customer3.getName().equals(name)) {
-            customer = customer3;
+        if (customers[0].getName().equals(name)) {
+            customer = customers[0];
+        } else if (customers[1].getName().equals(name)) {
+            customer = customers[1];
+        } else if (customers[2].getName().equals(name)) {
+            customer = customers[2];
         }
         return customer;
     }
     /**
      * Displays the balance to the user
      */
-    private static void checkBalance() {
+    private void checkBalance() {
         BankAccount customer = getCustomer();
         if (customer != null) {
             System.out.println("Hi " + customer.getName() + ", your balance is: "
