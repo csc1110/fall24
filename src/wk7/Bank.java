@@ -15,24 +15,18 @@ import java.util.Scanner;
  */
 public class Bank {
     private static Scanner in;
+    public final static int DEFAULT_CAPACITY = 3;
     private BankAccount[] customers;
-    /* Input
-    Chris Taylor
-    54
-    88wsjs
-    J J
-    23
-    9876
-    Ed
-    3
-    kakkssi
-     */
 
-    public Bank() {
-        customers = new BankAccount[3];
+    public Bank(int capacity) {
+        customers = new BankAccount[capacity];
         for (int i = 0; i < customers.length; i++) {
             customers[i] = getBankAccount("first");
         }
+    }
+
+    public Bank() {
+        this(DEFAULT_CAPACITY);
     }
 
     public static void main(String[] args) {
@@ -55,15 +49,13 @@ public class Bank {
 
     private void closeAccount() {
         BankAccount customer = getCustomer();
-        if (customer == customers[0]) {
-            System.out.println("You have been removed, ready for a new customer");
-            customers[0] = getBankAccount("new");
-        } else if (customers[1] == customer) {
-            System.out.println("You have been removed, ready for a new customer");
-            customers[1] = getBankAccount("new");
-        } else if (customers[2] == customer) {
-            System.out.println("You have been removed, ready for a new customer");
-            customers[2] = getBankAccount("new");
+        if (customer != null) {
+            boolean found = false;
+            for (int i = 0; !found && i < customers.length; i++) {
+                System.out.println("You have been removed, ready for a new customer");
+                customers[i] = getBankAccount("new");
+                found = true;
+            }
         } else {
             System.out.println("It does not appear that you bank with us.");
         }
@@ -104,12 +96,10 @@ public class Bank {
         System.out.println("What is your name?");
         String name = in.nextLine();
         BankAccount customer = null;
-        if (customers[0].getName().equals(name)) {
-            customer = customers[0];
-        } else if (customers[1].getName().equals(name)) {
-            customer = customers[1];
-        } else if (customers[2].getName().equals(name)) {
-            customer = customers[2];
+        for (int i = 0; customer == null && i < customers.length; i++) {
+            if (customers[i].getName().equals(name)) {
+                customer = customers[i];
+            }
         }
         return customer;
     }
