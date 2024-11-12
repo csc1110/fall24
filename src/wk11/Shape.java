@@ -7,11 +7,11 @@ public class Shape {
     private double xCoord;
     private double yCoord;
 
-//    public Shape() {
-//        color = Color.BLACK;
-//        xCoord = 0;
-//        yCoord = 0;
-//    }
+    public Shape() {
+        color = Color.BLACK;
+        xCoord = 0;
+        yCoord = 0;
+    }
     public Color getColor() {
         return color;
     }
