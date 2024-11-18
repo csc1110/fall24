@@ -1,6 +1,6 @@
 package wk11;
 
-public class B extends A {
+public abstract class B extends A {
     private String name;
 
     public B() {

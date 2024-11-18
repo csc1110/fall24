@@ -13,6 +13,11 @@ public class C extends A {
     }
 
     @Override
+    public double getDouble() {
+        return -0;
+    }
+
+    @Override
     public String dump() {
         System.out.println("C: dump()");
         return "" + x;

@@ -1,6 +1,6 @@
 package wk11;
 
-public class A {
+public abstract class A {
     private int num;
 
     public A() {
@@ -12,6 +12,8 @@ public class A {
         this.num = num;
         System.out.println("A: One-arg constructor");
     }
+
+    public abstract double getDouble();
 
     public String dump() {
         System.out.println("A: dump()");
