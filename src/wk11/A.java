@@ -10,7 +10,15 @@ public abstract class A {
 
     public A(int num) {
         this.num = num;
+        if (Math.random() < 1) {
+            throw new RuntimeException("weee");
+        }
         System.out.println("A: One-arg constructor");
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        return (o instanceof A a) && num == a.num;
     }
 
     public abstract double getDouble();
