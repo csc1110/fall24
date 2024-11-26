@@ -24,8 +24,8 @@ public class Driver {
         } while(weight < 0);
         try {
             method();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) { // This is BAD practice.
+            e.printStackTrace(); // This is BAD practice.
         }
     }
 
