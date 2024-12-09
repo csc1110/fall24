@@ -1,5 +1,7 @@
 package wk12;
 
+import java.util.logging.Logger;
+
 public class TextFile extends DesktopItem {
     private String contents;
 
@@ -10,6 +12,8 @@ public class TextFile extends DesktopItem {
     @Override
     public void open() {
         System.out.println(contents);
+        Logger logger = Logger.getLogger("ExampleLogger");
+        logger.severe("Yikes!");
     }
 
     public void add(String contents) {
